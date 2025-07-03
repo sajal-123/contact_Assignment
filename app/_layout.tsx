@@ -3,6 +3,7 @@ import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
+import ToastManager from 'toastify-react-native';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 
@@ -21,9 +22,16 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="contact/[email]" // Correct: This links to app/contact/[email].tsx
+          options={{
+            headerTitle: 'Contact Details',
+          }}
+        />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />
+      <ToastManager />
     </ThemeProvider>
   );
 }

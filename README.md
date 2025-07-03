@@ -1,50 +1,130 @@
-# Welcome to your Expo app 👋
+# 📱 Contacts Dashboard App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A React Native (Expo) application that displays a list of contacts fetched from an external API. Users can mark contacts as favorites, view them in a separate tab, and analyze favorite activity statistics in a bar chart — all with persistent local storage and without using any global state management (Redux or Context API).
 
-## Get started
+---
 
-1. Install dependencies
+## 🚀 Features
 
-   ```bash
-   npm install
-   ```
+- 📄 Contacts list from [randomuser.me](https://randomuser.me)
+- ⭐ Mark/unmark contacts as favorites
+- 💾 Persistent local storage with `AsyncStorage`
+- 📊 Stats screen showing favorite activity per hour (last 6 hours)
+- 🔍 Contact search functionality
+- 🌙 Light/Dark theme support
+- 📤 Export favorites as a JSON file (Bonus Feature)
+- ⚛️ Built with **Expo**, **React Navigation**, **TypeScript**, and **Functional Components**
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## 📸 Screenshots
 
-In the output, you'll find options to open the app in a
+| Contacts List | Contact Detail | Favorites | Stats |
+|---------------|----------------|-----------|-------|
+| ![Contacts](assets/demo/3.jpg) | ![Detail](assets/demo/4.jpg) | ![Favorites](assets/demo/1.jpg) | ![Stats](assets/demo/2.jpg) |
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 📂 Folder Structure
 
-## Get a fresh project
 
-When you're ready, run:
+
+app/
+│
+├── tabs/ # Bottom Tab Screens
+│ ├── _layout.tsx # Tab Navigator Layout
+│ ├── index.tsx # Contacts Screen
+│ ├── favorites.tsx # Favorites Screen
+│ └── stats.tsx # Stats Screen
+│
+├── contact/ # Contact Details Screen
+│ ├── _layout.tsx
+│ ├── email.tsx # Contact Detail UI
+│ └── not-found.tsx
+│
+├── components/ # Reusable UI Components
+│ ├── ContactCard.tsx
+│ ├── Collapsible.tsx
+│ ├── ExternalLink.tsx
+│ ├── Graph.tsx
+│ ├── Header.tsx
+│ ├── HapticTab.tsx
+│ ├── HelloWave.tsx
+│ ├── ParallaxScrollView.tsx
+│ ├── SearchBar.tsx
+│ ├── ThemedText.tsx
+│ └── ThemedView.tsx
+│
+├── services/ # API and Storage Services
+│ ├── storage.ts # AsyncStorage logic
+│ └── timestampTracker.ts # Timestamp tracking for stats
+│
+├── types/
+│ └── types.ts # TypeScript types
+│
+├── assets/ # Static assets
+├── constants/ # Colors, themes, etc.
+├── hooks/ # Custom React hooks
+├── app.json
+├── eas.json
+└── eslint.config.js
+
+yaml
+Copy
+Edit
+
+---
+
+## 🛠️ Technologies Used
+
+- **React Native + Expo**
+- **TypeScript**
+- **React Navigation (Bottom Tabs)**
+- **AsyncStorage** for persistent state
+- **expo-file-system** for exporting files
+- **Victory Native** for charting (Stats)
+- **react-native-svg**
+- **Hooks & Functional Components** only
+
+---
+
+## 📈 Stats Logic
+
+- Whenever a user is marked as a favorite, a timestamp is saved with the hour.
+- The **Stats Screen** counts the number of favorites added in each of the last 6 hours.
+- The data updates in real time based on storage.
+
+---
+
+## 🔐 Constraints Followed
+
+- ❌ No Redux or Context API
+- ❌ No props passed for favorite status
+- ✅ Favorites stored & fetched using AsyncStorage
+- ✅ Stats calculated from saved timestamps
+
+---
+
+## 📦 Installation & Run
 
 ```bash
-npm run reset-project
-```
+git clone https://github.com/sajal-123/contact_Assignment.git
+cd contact_Assignment
+npm install
+npx expo start
+To build APK:
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+bash
+Copy
+Edit
+eas build -p android --profile preview
+Replace preview with your configured EAS profile.
 
-## Learn more
+📤 APK
+You can find the generated APK file inside the repository or build it using EAS Build.
 
-To learn more about developing your project with Expo, look at the following resources:
+📬 API Source
+Random User API
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+🧑‍💻 Author
+Made with ❤️ by Sajal Garg
